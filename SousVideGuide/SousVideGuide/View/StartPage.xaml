@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SousVideGuide.View.StartPage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Top"
+            BarBackgroundColor="White"
+            SelectedTabColor="Blue"
+            UnselectedTabColor="LightSlateGray">
+
+    <ContentPage IconImageSource="main.png">
+        <ContentPage.Content>
+        <StackLayout>
+                <ScrollView>
+                    <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="300*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame CornerRadius="10" Padding="0" BackgroundColor="#c9c9c9" Margin="10">
+                        <SearchBar Placeholder="Search" PlaceholderColor="Black" />
+                    </Frame>
+
+                        <Frame Grid.Row="1" CornerRadius="15" Padding="0" Margin="15" IsClippedToBounds="True" VerticalOptions="CenterAndExpand" HasShadow="True">
+                            <Image Source="food.jpg" Aspect="AspectFit" x:Name="foodImage">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                          x:Name="displayRecipesTab"
+                                                          Tapped="displayRecipesTab_Tapped">
+                                        
+                                    </TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Frame>
+
+                        <Frame Grid.Row="2" CornerRadius="20" Padding="0" IsClippedToBounds="True" Margin="15" VerticalOptions="CenterAndExpand" HasShadow="True">
+                        <Image Source="food.jpg" Aspect="AspectFit"/>
+                    </Frame>
+
+                </Grid>
+                </ScrollView>
+            </StackLayout>
+    
+        </ContentPage.Content>
+    </ContentPage>
+    
+    <ContentPage IconImageSource="ic_action_fastfood.png" />
+    <ContentPage IconImageSource="settings.png" />
+</TabbedPage>

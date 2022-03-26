@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace SousVideGuide
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace SousVideGuide.View
 {
-    public partial class MainPage : Shell
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Recipes : ContentPage
     {
-        public MainPage()
+        public Recipes()
         {
             InitializeComponent();
         }
