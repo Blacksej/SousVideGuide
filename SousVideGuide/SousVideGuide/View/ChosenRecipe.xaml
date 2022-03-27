@@ -2,30 +2,208 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SousVideGuide.View.ChosenRecipe"
-             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel">
+             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:xyt="http://xamarin.com/schemas/2020/toolkit">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <ControlTemplate x:Key="CustomTab">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{TemplateBinding Text}" Grid.Row="0" HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand" TextColor="{TemplateBinding CurrentTextColor}" FontSize="15"/>
+
+                    <BoxView BackgroundColor="#2979ff" HeightRequest="10" WidthRequest="10" Grid.Row="1"
+                             HorizontalOptions="CenterAndExpand" CornerRadius="30" VerticalOptions="CenterAndExpand"
+                             IsVisible="{TemplateBinding IsSelected}"/>
+                </Grid>
+            </ControlTemplate>
+            
+            <Style x:Key="CustomTabStyle"
+                   TargetType="xyt:TabView">
+                <Setter 
+                    Property="IsTabTransitionEnabled"
+                    Value="True"/>
+                <Setter
+                    Property="TabStripHeight"
+                    Value="48"/>
+                <Setter
+                    Property="TabContentBackgroundColor"
+                    Value="White"/>
+                <Setter
+                    Property="TabStripPlacement"
+                    Value="Top"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.BindingContext>
         <viewModels:ChosenRecipeViewModel/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Frame Padding="8" CornerRadius="40" HasShadow="False">
-                <Image Source="{Binding ChosenRecipe.RecipeImage}" Aspect="AspectFit"/>
-            </Frame>
-            
-            
-            <Frame HasShadow="False" Padding="0">
-                <Label Text="{Binding ChosenRecipe.RecipeName}" FontSize="30" HorizontalOptions="CenterAndExpand" TextTransform="Uppercase" FontAttributes="Bold"/>
-            </Frame>
+        <Grid>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Grid>
+                    <Frame Padding="0" BackgroundColor="Black" HeightRequest="300">
+                        <Image Opacity="0.7" Source="{Binding ChosenRecipe.RecipeImage}" Aspect="AspectFill"/>
+                    </Frame>
+                    <StackLayout VerticalOptions="EndAndExpand" Margin="15,15,15,75">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ChosenRecipe.RecipeName}" Grid.Column="0" TextColor="White" FontSize="28" FontAttributes="None"/>
+                            <Label Text="Delicious recipe!" Grid.Column="0" TextColor="White" FontSize="24" FontAttributes="None" Padding="0,40,0,0"/>
+                            <StackLayout Grid.Column="1">
+                                <Label Text="Sous" HorizontalOptions="Center" Grid.Column="0" TextColor="White" FontSize="26" FontAttributes="Bold" Padding="-22,0,0,0"/>
+                                <Label Text="Vide" HorizontalOptions="Center" Grid.Column="0" TextColor="LightGray" FontSize="26" FontAttributes="Bold" Padding="-22,0,0,0"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Grid>
 
-            <Frame HasShadow="False" Padding="0">
-                <Label Text="INGREDIENTS" FontSize="20" FontAttributes="Bold" Padding="10,0,0,0"/>
-            </Frame>
+                <Grid VerticalOptions="FillAndExpand" Margin="0,-30,0,0" Padding="0">
+                    <Frame CornerRadius="25">
 
-            <Frame HasShadow="False" Padding="0">
-                <Label Text="{Binding ChosenRecipe.Ingredients}" FontSize="20" Padding="10,0,0,0"/>
-            </Frame>
+                        <Grid>
+                            <xyt:TabView Style="{StaticResource CustomTabStyle}">
+                                <xyt:TabViewItem
+                                    ControlTemplate="{StaticResource CustomTab}"
+                                    Text="Ingredients" TextColorSelected="#1979ff">
+
+                                    <StackLayout>
+                                        <Grid BackgroundColor="White">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Grid.Column="0" HeightRequest="50" VerticalOptions="Start">
+
+
+                                                <Grid BackgroundColor="White">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackLayout Grid.Column="0" Grid.RowSpan="2" HeightRequest="100" VerticalOptions="Start">
+                                                        <Image Source="duration.png" Aspect="AspectFit" HeightRequest="50" 
+                                                           VerticalOptions="CenterAndExpand" xyt:IconTintColorEffect.TintColor="Orange"/>
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
+
+                                                        <Label Text="TIME" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="SlateGray"/>
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Grid.Row="1" Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding ChosenRecipe.RecipeTime}" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+                                                            <Label Text="hours" VerticalOptions="EndAndExpand" FontAttributes="None" TextColor="Black"/>
+                                                            <!-- Has to be changed to a duration property -->
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="1" HeightRequest="50" VerticalOptions="Start">
+
+
+                                                <Grid BackgroundColor="White">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"/>
+                                                        <RowDefinition Height="*"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackLayout Grid.Column="0" Grid.RowSpan="2" HeightRequest="100" VerticalOptions="Start">
+                                                        <Image Source="temp.png" Aspect="AspectFit" HeightRequest="50" 
+                                                           VerticalOptions="CenterAndExpand" xyt:IconTintColorEffect.TintColor="Orange"/>
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
+
+                                                        <Label Text="TEMP" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="SlateGray"/>
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Grid.Row="1" Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="{Binding ChosenRecipe.RecipeTemp}" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+                                                            <Label Text="&#186;C" VerticalOptions="EndAndExpand" FontAttributes="None" TextColor="Black"/>
+                                                            <!-- Has to be changed to a TEMP property -->
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </StackLayout>
+
+
+
+                                        </Grid>
+                                        <ScrollView>
+                                            <StackLayout >
+                                            <Label Text="{Binding ChosenRecipe.Ingredients}" Padding="0,10,0,0" FontSize="20" TextColor="Black"/>
+                                        </StackLayout>
+                                        </ScrollView>
+                                    </StackLayout>
+
+
+
+                                </xyt:TabViewItem>
+
+                                <xyt:TabViewItem
+                                    ControlTemplate="{StaticResource CustomTab}"
+                                    Text="Procedure" TextColorSelected="#1979ff">
+                                    
+                                    <Grid BackgroundColor="Blue">
+                                        
+                                    </Grid>
+
+                                </xyt:TabViewItem>
+
+                            </xyt:TabView>
+                        </Grid>
+
+                    </Frame>
+                    <pancake:PancakeView CornerRadius="50" BackgroundColor="White" HeightRequest="80" WidthRequest="80" 
+                           HorizontalOptions="EndAndExpand" Margin="15,-45,16,15" VerticalOptions="StartAndExpand" Padding="5">
+                        <pancake:PancakeView.Shadow>
+                            <pancake:DropShadow Color="Black" BlurRadius="15" Offset="0,0"/>
+                        </pancake:PancakeView.Shadow>
+                        
+                        <Image Source="star.png" Aspect="AspectFit" Margin="15"/>
+
+                    </pancake:PancakeView>
+                </Grid>
             </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SousVideGuide.View.Discover"
              Title="Discover" 
-             IconImageSource="discover.png">
+             IconImageSource="discover.png"
+             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <ContentPage.BindingContext>
+        <viewModels:ChosenRecipeViewModel/>
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <StackLayout>
@@ -11,7 +15,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
-                        <RowDefinition Height="300*"/>
+                        <RowDefinition Height="200*"/>
                         <RowDefinition Height="300*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -22,20 +26,25 @@
                         <SearchBar Placeholder="Search for recipe" PlaceholderColor="Black" />
                     </Frame>
 
-                    <Frame Grid.Row="2" CornerRadius="15" Padding="0" Margin="15" IsClippedToBounds="True" VerticalOptions="CenterAndExpand" HasShadow="True">
+                        <Frame Grid.Row="2" CornerRadius="20" Padding="0" Margin="10" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
                         <Image Source="pulledpork.jpg" Aspect="AspectFit" x:Name="foodImage">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
                                                           x:Name="displayRecipesTab"
-                                                      Tapped="ShowRecipeTapped">
-
+                                                          Tapped="ShowRecipeTapped">
                                 </TapGestureRecognizer>
                             </Image.GestureRecognizers>
                         </Image>
                     </Frame>
 
-                    <Frame Grid.Row="1" CornerRadius="20" Padding="0" IsClippedToBounds="True" Margin="15" VerticalOptions="CenterAndExpand" HasShadow="True">
-                        <Image Source="food.jpg" Aspect="AspectFit"/>
+                    <Frame Grid.Row="1" CornerRadius="20" Padding="0" IsClippedToBounds="True" Margin="10" VerticalOptions="CenterAndExpand">
+                        <Image Source="ribeye.jpg" Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Tapped="ShowRecipeTapped2">
+                                </TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Frame>
 
                 </Grid>

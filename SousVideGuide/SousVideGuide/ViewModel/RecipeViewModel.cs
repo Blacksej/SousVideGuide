@@ -47,6 +47,32 @@ namespace SousVideGuide.ViewModel
             }
         }
 
+        public string RecipeTime
+        {
+            get
+            {
+                return GetRecipe.RecipeTime;
+            }
+            set
+            {
+                GetRecipe.RecipeTime = value;
+                OnPropertyChanged(nameof(RecipeTime));
+            }
+        }
+
+        public uint RecipeTemp
+        {
+            get
+            {
+                return GetRecipe.RecipeTemp;
+            }
+            set
+            {
+                GetRecipe.RecipeTemp = value;
+                OnPropertyChanged(nameof(RecipeTemp));
+            }
+        }
+
         public Recipe GetRecipe { get; private set; }
 
         public RecipeViewModel(Recipe recipe)
