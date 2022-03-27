@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace SousVideGuide.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StartPage : TabbedPage
+    public partial class ChosenRecipe : ContentPage
     {
-        public StartPage()
+        public ChosenRecipe()
         {
             InitializeComponent();
         }

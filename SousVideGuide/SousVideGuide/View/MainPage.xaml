@@ -11,12 +11,11 @@
     <FlyoutItem Title="MyTabApp"
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
-        
+
         <ShellContent Title="Start" Icon="main.png" IsTabStop="True" ContentTemplate="{DataTemplate local:StartPage}"/>
-        <ShellContent Title="Recipes" Icon="ic_action_fastfood.png" IsTabStop="True" ContentTemplate="{DataTemplate local:Recipes}"/>
         <ShellContent Title="Information" Icon="info.png" IsTabStop="True" ContentTemplate="{DataTemplate local:Information}"/>
     </FlyoutItem>
 
-    <ShellContent Title="Settings" Icon="settings.png" ContentTemplate="{DataTemplate local:Recipes}"/>
+    <ShellContent Title="Settings" Icon="settings.png" ContentTemplate="{DataTemplate local:Settings}"/>
 
 </Shell>

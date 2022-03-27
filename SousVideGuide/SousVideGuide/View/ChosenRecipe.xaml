@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SousVideGuide.View.ChosenRecipe"
+             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel">
+
+    <ContentPage.BindingContext>
+        <viewModels:ChosenRecipeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Padding="8" CornerRadius="40" HasShadow="False">
+                <Image Source="{Binding ChosenRecipe.RecipeImage}" Aspect="AspectFit"/>
+            </Frame>
+            
+            
+            <Frame HasShadow="False" Padding="0">
+                <Label Text="{Binding ChosenRecipe.RecipeName}" FontSize="30" HorizontalOptions="CenterAndExpand" TextTransform="Uppercase" FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame HasShadow="False" Padding="0">
+                <Label Text="INGREDIENTS" FontSize="20" FontAttributes="Bold" Padding="10,0,0,0"/>
+            </Frame>
+
+            <Frame HasShadow="False" Padding="0">
+                <Label Text="{Binding ChosenRecipe.Ingredients}" FontSize="20" Padding="10,0,0,0"/>
+            </Frame>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

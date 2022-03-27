@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace SousVideGuide.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Recipes : ContentPage
+    public partial class Trending : ContentPage
     {
-        public Recipes()
+        public Trending()
         {
             InitializeComponent();
         }
