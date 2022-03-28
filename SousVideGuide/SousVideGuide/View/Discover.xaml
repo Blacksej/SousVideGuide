@@ -4,12 +4,14 @@
              x:Class="SousVideGuide.View.Discover"
              Title="Discover" 
              IconImageSource="discover.png"
-             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" 
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <ContentPage.BindingContext>
-        <viewModels:ChosenRecipeViewModel/>
+        <viewModels:DiscoverViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
+
         <StackLayout>
             <ScrollView>
                 <Grid>
@@ -22,11 +24,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Frame CornerRadius="10" Padding="0" BackgroundColor="#c9c9c9" Margin="10">
+                    <Frame CornerRadius="10" Padding="0" BackgroundColor="#c9c9c9" Margin="10" HasShadow="False">
                         <SearchBar Placeholder="Search for recipe" PlaceholderColor="Black" />
                     </Frame>
 
-                        <Frame Grid.Row="2" CornerRadius="20" Padding="0" Margin="10" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
+                   <Frame Grid.Row="2" CornerRadius="20" Padding="0" Margin="10" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
                         <Image Source="pulledpork.jpg" Aspect="AspectFit" x:Name="foodImage">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1"
@@ -47,6 +49,14 @@
                         </Image>
                     </Frame>
 
+                    <!--<ListView ItemsSource="{Binding RecipesList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageCell ImageSource="{Binding RecipeImage}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                    </ListView>-->
                 </Grid>
             </ScrollView>
         </StackLayout>

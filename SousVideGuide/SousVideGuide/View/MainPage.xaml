@@ -12,8 +12,8 @@
                 Shell.TabBarIsVisible="False"
                 FlyoutDisplayOptions="AsMultipleItems">
 
-        <ShellContent Title="Start" Icon="main.png" IsTabStop="True" ContentTemplate="{DataTemplate local:StartPage}"/>
-        <ShellContent Title="Information" Icon="info.png" IsTabStop="True" ContentTemplate="{DataTemplate local:Information}"/>
+        <ShellContent Title="Start" Icon="main.png" Route="StartPage" IsTabStop="True" ContentTemplate="{DataTemplate local:StartPage}"/>
+        <ShellContent Title="Information" Route="Information" Icon="info.png" IsTabStop="True" ContentTemplate="{DataTemplate local:Information}"/>
     </FlyoutItem>
 
     <ShellContent Title="Settings" Icon="settings.png" ContentTemplate="{DataTemplate local:Settings}"/>

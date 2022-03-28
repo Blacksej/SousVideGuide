@@ -16,5 +16,15 @@ namespace SousVideGuide.View
         {
             InitializeComponent();
         }
+
+        private async void AddRecipe_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddRecipeContentPage());
+        }
+
+        private void DiscoverAppearing(object sender, EventArgs e)
+        {
+            discoverPage.Reload();
+        }
     }
 }

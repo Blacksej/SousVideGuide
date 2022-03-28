@@ -8,8 +8,11 @@
             SelectedTabColor="Blue"
             UnselectedTabColor="LightSlateGray">
 
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Add Recipe" Clicked="AddRecipe_Clicked"/>
+    </TabbedPage.ToolbarItems>
     <TabbedPage.Children>
-        <local:Discover/>
+        <local:Discover x:Name="discoverPage" Appearing="DiscoverAppearing"/>
         <local:Trending/>
         <local:Favorites/>
     </TabbedPage.Children>

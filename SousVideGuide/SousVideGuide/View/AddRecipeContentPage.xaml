@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SousVideGuide.View.AddRecipeContentPage"
+             xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel">
+
+    <ContentPage.BindingContext>
+        <viewModels:AddRecipeViewModel x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Frame Padding="10" CornerRadius="10" BackgroundColor="White" Margin="15">
+            <StackLayout>
+                <Label Text="CREATE YOUR RECIPE" FontSize="20" FontAttributes="Bold"/>
+                <Entry Placeholder="Recipe Name" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Text="{Binding RecipeName}"/>
+                <Entry Placeholder="Ingredients" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,20,0,0" Text="{Binding Ingredients}"/>
+                <Label Text="Select Picture" Margin="0,30,0,0" FontAttributes="Bold" FontSize="15"/>
+                <Button x:Name="AddImageButton" Text="Select" Clicked="AddImageButtonClicked" BackgroundColor="#1895ff"/>
+                <Entry x:Name="SelectedImage" Placeholder="Selected Image" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,0,0,0" IsReadOnly="True" Text="{Binding RecipeImage}"/>
+                <Entry Placeholder="Recipe Time (hours)" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTime}"/>
+                <Entry Placeholder="Recipe Temperature(&#186;C)" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTemp}"/>
+                <Button Text="Create Recipe" VerticalOptions="FillAndExpand" BackgroundColor="#1895ff" Clicked="CreateRecipeClicked"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

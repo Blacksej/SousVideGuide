@@ -28,6 +28,11 @@ namespace SousVideGuide.View
             await Navigation.PushAsync(chosenRecipe);
         }
 
+        internal void Reload()
+        {
+            viewModel.Reload();
+        }
+
         private async void ShowRecipeTapped2(object sender, EventArgs e)
         {
             Recipe recipe = new Recipe("Rib-Eye Steak, Garlic Powder, Salt, Pepper", "ribeye.jpg", "Rib-Eye", "1.5", 56);
