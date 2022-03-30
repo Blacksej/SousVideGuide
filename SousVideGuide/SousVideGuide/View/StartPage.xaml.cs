@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SousVideGuide.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,10 @@ namespace SousVideGuide.View
             await Navigation.PushAsync(new AddRecipeContentPage());
         }
 
-        private void DiscoverAppearing(object sender, EventArgs e)
+        private void DiscoverPageAppearing(object sender, EventArgs e)
         {
-            discoverPage.Reload();
+            DiscoverViewModel discoverViewModel = (discoverPage.BindingContext as DiscoverViewModel);
+            discoverViewModel.GetRecipe();
         }
     }
 }

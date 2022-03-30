@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +14,15 @@ namespace SousVideGuide.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Discover : ContentPage
     {
+        public ICommand TappedCommand => new Command(Tapped);
+
+        private async void Tapped(object obj)
+        {
+            RecipeViewModel recipeViewModel = new RecipeViewModel(obj as Recipe);
+            ChosenRecipe chosenRecipe = new ChosenRecipe();
+            (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
+            await Navigation.PushAsync(chosenRecipe);
+        }
         public Discover()
         {
             InitializeComponent();
@@ -21,16 +30,10 @@ namespace SousVideGuide.View
 
         private async void ShowRecipeTapped(object sender, EventArgs e)
         {
-            Recipe recipe = new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 5 Bay Leaves, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika, 1tsp Chili Powder", "pulledpork.jpg", "Pulled Pork", "24", 73);
-            RecipeViewModel recipeViewModel = new RecipeViewModel(recipe);
+            RecipeViewModel recipeViewModel = new RecipeViewModel(viewModel.SelectedRecipe);
             ChosenRecipe chosenRecipe = new ChosenRecipe();
             (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
             await Navigation.PushAsync(chosenRecipe);
-        }
-
-        internal void Reload()
-        {
-            viewModel.Reload();
         }
 
         private async void ShowRecipeTapped2(object sender, EventArgs e)

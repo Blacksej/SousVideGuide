@@ -5,20 +5,19 @@
              Title="Discover" 
              IconImageSource="discover.png"
              xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" 
-             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+             xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Name="DiscoverView">
     <ContentPage.BindingContext>
         <viewModels:DiscoverViewModel x:Name="viewModel"/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-
         <StackLayout>
             <ScrollView>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70"/>
-                        <RowDefinition Height="200*"/>
-                        <RowDefinition Height="300*"/>
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -28,38 +27,38 @@
                         <SearchBar Placeholder="Search for recipe" PlaceholderColor="Black" />
                     </Frame>
 
-                   <Frame Grid.Row="2" CornerRadius="20" Padding="0" Margin="10" IsClippedToBounds="True" VerticalOptions="CenterAndExpand">
-                        <Image Source="pulledpork.jpg" Aspect="AspectFit" x:Name="foodImage">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                          x:Name="displayRecipesTab"
-                                                          Tapped="ShowRecipeTapped">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Frame>
-
-                    <Frame Grid.Row="1" CornerRadius="20" Padding="0" IsClippedToBounds="True" Margin="10" VerticalOptions="CenterAndExpand">
-                        <Image Source="ribeye.jpg" Aspect="AspectFit">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                      Tapped="ShowRecipeTapped2">
-                                </TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Frame>
-
-                    <!--<ListView ItemsSource="{Binding RecipesList}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ImageCell ImageSource="{Binding RecipeImage}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                        
-                    </ListView>-->
+                    <Frame Grid.Row="1" Padding="0" CornerRadius="20" Margin="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HasShadow="False">
+                            <CollectionView ItemsSource="{Binding RecipesList}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                    <StackLayout Margin="0,0,0,60">
+                                        <Frame CornerRadius="20" Padding="0" HeightRequest="300" HasShadow="True" BackgroundColor="#59788e">
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding RecipeName}" Padding="20,5,0,3" FontSize="18" FontAttributes="Bold" TextColor="Orange"/>
+                                                        <Label Text="{Binding RecipeTemp}" Padding="20,5,0,3" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                                        <Label Text="&#186;C" Padding="0,5,0,3" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                                        <Label Text="{Binding RecipeTime}" Padding="20,5,0,3" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                                        <Label Text="Hours" Padding="0,5,0,3" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                                    </StackLayout>
+                                                    <Frame Padding="0,0,0,0" CornerRadius="20" HasShadow="True">
+                                                        <Image Source="{Binding RecipeImage}" Aspect="AspectFill" Margin="0,0,0,0" HorizontalOptions="FillAndExpand">
+                                                            <Image.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                  Command="{Binding Path=TappedCommand,Source={x:Reference DiscoverView}}" CommandParameter="{Binding .}">
+                                                                </TapGestureRecognizer>
+                                                            </Image.GestureRecognizers>
+                                                        </Image>
+                                                    </Frame>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </Frame>
                 </Grid>
             </ScrollView>
         </StackLayout>
-
     </ContentPage.Content>
 </ContentPage>

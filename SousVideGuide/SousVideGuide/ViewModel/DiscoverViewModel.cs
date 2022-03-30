@@ -2,14 +2,31 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace SousVideGuide.ViewModel
 {
     class DiscoverViewModel : BindableObject
     {
+
         RecipeRepository recipeRepository;
+
+        private Recipe selectedRecipe;
+
+        public Recipe SelectedRecipe
+        {
+            get { return selectedRecipe; }
+            set 
+            { 
+                selectedRecipe = value;
+                OnPropertyChanged(nameof(SelectedRecipe));
+            }
+        }
+
 
         private ObservableCollection<Recipe> recipesList;
 
@@ -26,12 +43,11 @@ namespace SousVideGuide.ViewModel
         public DiscoverViewModel()
         {
             recipeRepository = new RecipeRepository();
-            Reload();
         }
 
-        internal void Reload()
+        public void GetRecipe()
         {
-            recipesList = new ObservableCollection<Recipe>(recipeRepository.GetRecipes());
+            RecipesList = new ObservableCollection<Recipe>(recipeRepository.GetRecipes());
         }
     }
 }

@@ -12,7 +12,7 @@
         <ToolbarItem Text="Add Recipe" Clicked="AddRecipe_Clicked"/>
     </TabbedPage.ToolbarItems>
     <TabbedPage.Children>
-        <local:Discover x:Name="discoverPage" Appearing="DiscoverAppearing"/>
+        <local:Discover x:Name="discoverPage" Appearing="DiscoverPageAppearing"/>
         <local:Trending/>
         <local:Favorites/>
     </TabbedPage.Children>

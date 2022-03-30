@@ -93,11 +93,6 @@ namespace SousVideGuide.ViewModel
             }
         }
 
-        public void GetRecipe()
-        {
-            recipesList = new ObservableCollection<Recipe>(recipeRepo.GetRecipes());
-        }
-
         public void CreateRecipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
         {
             Recipe recipeCreated = new Recipe(ingredients, recipeImage, recipeName, recipeTime, recipeTemp);
