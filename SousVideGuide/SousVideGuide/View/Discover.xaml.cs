@@ -44,5 +44,11 @@ namespace SousVideGuide.View
             (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
             await Navigation.PushAsync(chosenRecipe);
         }
+
+        private void searchBarDiscoverTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchResult = viewModel.RecipesList.Where(x => x.RecipeName.ToLower().Contains(searchBarDiscover.Text.ToLower()));
+            recipesListCollection.ItemsSource = searchResult;
+        }
     }
 }
