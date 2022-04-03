@@ -11,14 +11,14 @@
     <ContentPage.Content>
         <Frame Padding="10" CornerRadius="10" BackgroundColor="White" Margin="15">
             <StackLayout>
-                <Label Text="CREATE YOUR RECIPE" FontSize="20" FontAttributes="Bold"/>
-                <Entry Placeholder="Recipe Name" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Text="{Binding RecipeName}"/>
-                <Entry Placeholder="Ingredients" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,20,0,0" Text="{Binding Ingredients}"/>
-                <Label Text="Select Picture" Margin="0,30,0,0" FontAttributes="Bold" FontSize="15"/>
+                <Label Text="CREATE YOUR RECIPE" FontSize="20" FontAttributes="Bold" TextColor="Black" BackgroundColor="White"/>
+                <Entry x:Name="recipeNameEntry" Placeholder="Recipe Name" TextColor="Black" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Text="{Binding RecipeName}" PlaceholderColor="Black" BackgroundColor="White"/>
+                <Entry x:Name="ingredientsEntry" Placeholder="Ingredients" TextColor="Black" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,20,0,0" Text="{Binding Ingredients}" PlaceholderColor="Black" BackgroundColor="White"/>
+                <Label Text="Select Picture" Margin="0,30,0,0" FontAttributes="Bold" FontSize="15" TextColor="Black" BackgroundColor="White"/>
                 <Button x:Name="AddImageButton" Text="Select" Clicked="AddImageButtonClicked" BackgroundColor="#1895ff"/>
-                <Entry x:Name="SelectedImage" Placeholder="Selected Image" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,0,0,0" IsReadOnly="True" Text="{Binding RecipeImage}"/>
-                <Entry Placeholder="Recipe Time (hours)" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTime}"/>
-                <Entry Placeholder="Recipe Temperature(&#186;C)" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTemp}"/>
+                <Entry x:Name="SelectedImage" TextColor="Black" Placeholder="Selected Image" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,0,0,0" IsReadOnly="True" Text="{Binding RecipeImage}" PlaceholderColor="Black" BackgroundColor="White"/>
+                <Entry x:Name="recipeTimeEntry" Placeholder="Recipe Time (hours)" TextColor="Black" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTime}" PlaceholderColor="Black" BackgroundColor="White"/>
+                <Entry x:Name="tempEntry" Placeholder="Recipe Temperature(&#186;C)" TextColor="Black" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTemp}" PlaceholderColor="Black" BackgroundColor="White"/>
                 <Button Text="Create Recipe" VerticalOptions="FillAndExpand" BackgroundColor="#1895ff" Clicked="CreateRecipeClicked"/>
             </StackLayout>
         </Frame>

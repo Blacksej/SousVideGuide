@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SousVideGuide.View.Information">
     <ContentPage.Content>
-        <Label Text="I am Information page" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+        <Label Text="I am Information page" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black"/>
     </ContentPage.Content>
 </ContentPage>

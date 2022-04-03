@@ -2,14 +2,25 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using Xamarin.Forms;
+using System.Drawing;
 
 namespace SousVideGuide.ViewModel
 {
     class AddRecipeViewModel : BindableObject
     {
         RecipeRepository recipeRepo;
+
+        private Recipe lastRecipe;
+
+        public Recipe LastRecipe
+        {
+            get { return lastRecipe; }
+            set { lastRecipe = value; }
+        }
+
 
         private ObservableCollection<Recipe> recipesList;
 
@@ -96,9 +107,10 @@ namespace SousVideGuide.ViewModel
         public void CreateRecipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
         {
             Recipe recipeCreated = new Recipe(ingredients, recipeImage, recipeName, recipeTime, recipeTemp);
-
+            LastRecipe = recipeCreated;
             recipeRepo.CreateRecipe(recipeCreated);
         }
+
 
         public void CreateRecipe()
         {

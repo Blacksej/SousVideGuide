@@ -49,7 +49,7 @@
     </ContentPage.Resources>
     
     <ContentPage.BindingContext>
-        <viewModels:ChosenRecipeViewModel/>
+        <viewModels:ChosenRecipeViewModel x:Name="chosenRecipeViewModel"/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -82,7 +82,7 @@
                             <xyt:TabView Style="{StaticResource CustomTabStyle}">
                                 <xyt:TabViewItem
                                     ControlTemplate="{StaticResource CustomTab}"
-                                    Text="Ingredients" TextColorSelected="#1979ff">
+                                    Text="Ingredients" TextColorSelected="#1979ff" TextColor="Black">
 
                                     <StackLayout>
                                         <Grid BackgroundColor="White">
@@ -181,7 +181,7 @@
 
                                 <xyt:TabViewItem
                                     ControlTemplate="{StaticResource CustomTab}"
-                                    Text="Procedure" TextColorSelected="#1979ff">
+                                    Text="Procedure" TextColorSelected="#1979ff" TextColor="Black">
                                     
                                     <Grid BackgroundColor="Blue">
                                         

@@ -73,8 +73,8 @@
                                    BackgroundColor="#c9c9c9" WidthRequest="380" TextChanged="searchBarDiscoverTextChanged" CancelButtonColor="Black"/>
                     </Frame>
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,15,0,0">
-                        <Label Text="SOUS VIDE" TextColor="Black" FontFamily="ThemeFont" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,30,0"/>
-                        <Label Text="R E C I P E S" VerticalOptions="CenterAndExpand" Opacity="0.6" Margin="0" TextColor="Black" FontFamily="ThemeFont" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold"/>
+                        <Label Text="SOUS VIDE" TextColor="Black" FontFamily="ThemeFont" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold" Margin="0,0,5,0"/>
+                        <Label Text="R E C I P E S" VerticalOptions="CenterAndExpand" Opacity="0.8" Margin="0" TextColor="Black" FontFamily="ThemeFont" FontSize="20" HorizontalOptions="Center" FontAttributes="Bold"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>
@@ -84,14 +84,14 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="0"> 
+                        <Grid Padding="20,0,20,0"> 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Frame Padding="0" CornerRadius="20" BackgroundColor="Orange" Margin="-2,0,-2,-30" xct:ShadowEffect.Color="Black">
                                 <Image Source="{Binding RecipeImage}" Aspect="AspectFill" Margin="0,0,0,0" HorizontalOptions="Center" 
-                                       VerticalOptions="Center" WidthRequest="400" HeightRequest="250">
+                                       VerticalOptions="Center" WidthRequest="365" HeightRequest="220">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1"
                                                           Command="{Binding Path=TappedCommand,Source={x:Reference DiscoverView}}" CommandParameter="{Binding .}">
@@ -99,7 +99,7 @@
                                     </Image.GestureRecognizers>
                                 </Image>
                             </Frame>
-                            <Frame Grid.Row="1" Padding="0" xct:ShadowEffect.Color="Black" xct:TouchEffect.PressedScale="1.01" BackgroundColor="#1876ae" CornerRadius="20" HeightRequest="50" Margin="20,0,20,30" HasShadow="True">
+                            <Frame Grid.Row="1" Padding="0" xct:ShadowEffect.Color="Black" xct:TouchEffect.PressedScale="1.03" BackgroundColor="#1876ae" CornerRadius="20" HeightRequest="50" Margin="20,0,20,30" HasShadow="True">
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1"
                                                           Command="{Binding Path=TappedCommand,Source={x:Reference DiscoverView}}" CommandParameter="{Binding .}">
