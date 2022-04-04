@@ -28,9 +28,9 @@ namespace SousVideGuide.ViewModel
         }
 
 
-        private ObservableCollection<Recipe> recipesList;
+        private ObservableCollection<RecipeViewModel> recipesList;
 
-        public ObservableCollection<Recipe> RecipesList
+        public ObservableCollection<RecipeViewModel> RecipesList
         {
             get { return recipesList; }
             set
@@ -47,7 +47,12 @@ namespace SousVideGuide.ViewModel
 
         public void GetRecipe()
         {
-            RecipesList = new ObservableCollection<Recipe>(recipeRepository.GetRecipes());
+            RecipesList = new ObservableCollection<RecipeViewModel>();
+            foreach (var recipe in recipeRepository.GetRecipes())
+            {
+                RecipeViewModel recipeViewModel = new RecipeViewModel(recipe);
+                RecipesList.Add(recipeViewModel);
+            }
         }
     }
 }

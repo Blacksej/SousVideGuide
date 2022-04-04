@@ -18,7 +18,7 @@ namespace SousVideGuide.View
 
         private async void Tapped(object obj)
         {
-            RecipeViewModel recipeViewModel = new RecipeViewModel(obj as Recipe);
+            RecipeViewModel recipeViewModel = obj as RecipeViewModel;
             ChosenRecipe chosenRecipe = new ChosenRecipe();
             (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
             await Navigation.PushAsync(chosenRecipe);
@@ -26,23 +26,6 @@ namespace SousVideGuide.View
         public Discover()
         {
             InitializeComponent();
-        }
-
-        private async void ShowRecipeTapped(object sender, EventArgs e)
-        {
-            RecipeViewModel recipeViewModel = new RecipeViewModel(viewModel.SelectedRecipe);
-            ChosenRecipe chosenRecipe = new ChosenRecipe();
-            (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
-            await Navigation.PushAsync(chosenRecipe);
-        }
-
-        private async void ShowRecipeTapped2(object sender, EventArgs e)
-        {
-            Recipe recipe = new Recipe("Rib-Eye Steak, Garlic Powder, Salt, Pepper", "ribeye.jpg", "Rib-Eye", "1.5", 56);
-            RecipeViewModel recipeViewModel = new RecipeViewModel(recipe);
-            ChosenRecipe chosenRecipe = new ChosenRecipe();
-            (chosenRecipe.BindingContext as ChosenRecipeViewModel).ChosenRecipe = recipeViewModel;
-            await Navigation.PushAsync(chosenRecipe);
         }
 
         private void searchBarDiscoverTextChanged(object sender, TextChangedEventArgs e)

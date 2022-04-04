@@ -32,6 +32,7 @@ namespace SousVideGuide.View
                 }
 
                 SelectedImage.Text = file.FileName;
+                viewModel.PickedFile = file;
             }
             catch (Exception)
             {

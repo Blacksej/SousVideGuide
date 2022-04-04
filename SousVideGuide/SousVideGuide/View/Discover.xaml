@@ -90,7 +90,7 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Frame Padding="0" CornerRadius="20" BackgroundColor="Orange" Margin="-2,0,-2,-30" xct:ShadowEffect.Color="Black">
-                                <Image Source="{Binding RecipeImage}" Aspect="AspectFill" Margin="0,0,0,0" HorizontalOptions="Center" 
+                                <Image Source="{Binding Image}" Aspect="AspectFill" Margin="0,0,0,0" HorizontalOptions="Center" 
                                        VerticalOptions="Center" WidthRequest="365" HeightRequest="220">
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1"

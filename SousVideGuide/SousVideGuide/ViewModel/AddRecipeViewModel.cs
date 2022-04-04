@@ -6,6 +6,8 @@ using System.IO;
 using System.Text;
 using Xamarin.Forms;
 using System.Drawing;
+using Xamarin.Essentials;
+using System.Linq;
 
 namespace SousVideGuide.ViewModel
 {
@@ -104,9 +106,22 @@ namespace SousVideGuide.ViewModel
             }
         }
 
-        public void CreateRecipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
+
+        public FileResult PickedFile { get; internal set; }
+
+        public async void CreateRecipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
         {
-            Recipe recipeCreated = new Recipe(ingredients, recipeImage, recipeName, recipeTime, recipeTemp);
+            byte[] imageByteArray;
+            int imageSize;
+
+            using (Stream stream = await PickedFile.OpenReadAsync())
+            {
+                imageSize = (int)stream.Length; // File length.
+                imageByteArray = new byte[imageSize]; // Allocate image byte array
+                stream.Read(imageByteArray, 0, imageSize); // read image int byte array
+            }
+
+            Recipe recipeCreated = new Recipe(ingredients, recipeImage, recipeName, recipeTime, recipeTemp, imageByteArray, PickedFile.FileName.Split('.').Last()); // Grabs the last part of the sequence. (filetype).
             LastRecipe = recipeCreated;
             recipeRepo.CreateRecipe(recipeCreated);
         }

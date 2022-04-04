@@ -2,30 +2,52 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
+using System.IO;
+
 
 namespace SousVideGuide.Model
 {
     public class RecipeRepository
     {
-        static List<Recipe> recipesList = new List<Recipe>()
-        { 
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 5 Bay Leaves, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika, 1tsp Chili Powder", "pulledpork.jpg", "Pulled Pork", "24", 73),
-            new Recipe("2L Water, 50g Sugar, 10 Peppercorn, 5 Bay Leaves, 2kg Pork Shoulder, 2tbsp Paprika, 1tsp Chili Powder", "ribeye.jpg", "Rib Eye Steak", "1.5", 56),
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika", "porktenderloin.jpg", "Pork Tenderloin", "1.5", 58),
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 4tbsp Brown Sugar, 2tbsp Paprika", "cheesecake.jpg", "Cheesecake", "1.5", 80),
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika", "duck.jpg", "Duck Breast", "2", 58),
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika", "legoflamb.jpg", "Leg of Lamb", "24", 60),
-            new Recipe("2L Water, 100g Salt, 50g Sugar, 10 Peppercorn, 2kg Pork Shoulder, 4tbsp Brown Sugar, 2tbsp Paprika", "roastpork.jpg", "Roast Pork", "6", 60)
-        };
+        static private List<Recipe> recipeList = new List<Recipe>();
+
+        // This is the personal folder for the app.
+        private string personalFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
 
         public IEnumerable<Recipe> GetRecipes()
         {
-            return recipesList;
+            return recipeList;
         }
 
         public void CreateRecipe(Recipe recipeCreated)
         {
-            recipesList.Add(recipeCreated);
+            recipeList.Add(recipeCreated);
+
+            //var imageFile = Path.Combine(personalFolder, recipeCreated.RecipeImage);
+            //using (var writer = File.Create(imageFile))
+            //{
+            //    await writer.WriteAsync(recipeCreated.Image, 0, recipeCreated.Image.Length);
+            //}
         }
+
+        //public async void ReadAll()
+        //{
+        //    RecipesList = new List<Recipe>();
+
+        //    string[] files = Directory.GetFiles(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal));
+
+        //    foreach (var item in files)
+        //    {
+        //        using (var stream = File.OpenRead(item))
+        //        {
+        //            using (var ms = new MemoryStream())
+        //            {
+        //                stream.CopyTo(ms);
+        //                RecipesList.Add(new Recipe())
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

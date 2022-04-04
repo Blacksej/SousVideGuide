@@ -75,6 +75,8 @@ namespace SousVideGuide.ViewModel
             }
         }
 
+        public ImageSource Image { get => ImageSource.FromStream(() => GetRecipe.Stream); }
+
         public Recipe GetRecipe { get; private set; }
 
         public RecipeViewModel(Recipe recipe)
