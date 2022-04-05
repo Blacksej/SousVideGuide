@@ -27,7 +27,7 @@ namespace SousVideGuide.ViewModel
         {
             get
             {
-                return GetRecipe.Ingredients.Replace(", ","\n");
+                return GetRecipe.Ingredients.Replace(", ", "\n");
             }
             set
             {

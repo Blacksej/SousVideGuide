@@ -20,10 +20,9 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="{TemplateBinding Text}" Grid.Row="0" HorizontalOptions="CenterAndExpand" 
-                           VerticalOptions="CenterAndExpand" TextColor="{TemplateBinding CurrentTextColor}" FontSize="15"/>
-
-                    <BoxView BackgroundColor="#2979ff" HeightRequest="10" WidthRequest="10" Grid.Row="1"
+                        <Label Text="{TemplateBinding Text}" Grid.Row="0" HorizontalOptions="CenterAndExpand" 
+                           VerticalOptions="CenterAndExpand" TextColor="{TemplateBinding CurrentTextColor}" FontSize="16"/>
+                        <BoxView BackgroundColor="#2979ff" HeightRequest="10" WidthRequest="10" Grid.Row="1"
                              HorizontalOptions="CenterAndExpand" CornerRadius="30" VerticalOptions="CenterAndExpand"
                              IsVisible="{TemplateBinding IsSelected}"/>
                 </Grid>
@@ -168,11 +167,16 @@
 
 
                                         </Grid>
-                                        <ScrollView>
-                                            <StackLayout >
-                                            <Label Text="{Binding ChosenRecipe.Ingredients}" Padding="0,10,0,0" FontSize="20" TextColor="Black"/>
+                                        <StackLayout>
+                                            <Label Text="INGREDIENTS" FontSize="18" FontAttributes="Bold" TextColor="Black" Margin="6,30,0,0"/>
+                                            <ScrollView Margin="0,0,0,0">
+                                                <Frame Padding="15,0,0,10" CornerRadius="2" BorderColor="Black">
+                                                    <StackLayout>
+                                                        <Label Text="{Binding ChosenRecipe.Ingredients}" Padding="0,10,0,0" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </ScrollView>
                                         </StackLayout>
-                                        </ScrollView>
                                     </StackLayout>
 
 
