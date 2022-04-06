@@ -65,5 +65,33 @@ namespace SousVideGuide.View
                 await DisplayAlert("Alert", "Please fill out all the textboxes", "OK");
             }
         }
+
+        private async void AddIngredientClicked(object sender, EventArgs e)
+        {
+            if (ingredientsEntry.Text == "" || ingredientsEntry.Text is null)
+            {
+                await DisplayAlert("Alert", "Please enter an ingredient amount and name", "OK");
+            }
+            else
+            {
+                viewModel.AddIngredientTemp();
+                ingredientsEntry.Text = string.Empty;
+                ingredientsEntry.Focus();
+            }
+        }
+
+        private async void OnEnterPressed(object sender, EventArgs e)
+        {
+            if (ingredientsEntry.Text == "" || ingredientsEntry.Text is null)
+            {
+                await DisplayAlert("Alert", "Please enter an ingredient amount and name", "OK");
+            }
+            else 
+            {
+            viewModel.AddIngredientTemp();
+            ingredientsEntry.Text = string.Empty;
+            ingredientsEntry.Focus();
+            }
+        }
     }
 }

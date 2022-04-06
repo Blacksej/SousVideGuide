@@ -13,6 +13,18 @@ namespace SousVideGuide.ViewModel
 {
     class AddRecipeViewModel : BindableObject
     {
+        private ObservableCollection<string> tempIngredientStorage;
+
+        public ObservableCollection<string> TempIngredientStorage
+        {
+            get { return tempIngredientStorage; }
+            set 
+            {
+                tempIngredientStorage = value;
+                OnPropertyChanged(nameof(TempIngredientStorage));
+            }
+        }
+
         RecipeRepository recipeRepo;
 
         private Recipe lastRecipe;
@@ -23,18 +35,6 @@ namespace SousVideGuide.ViewModel
             set { lastRecipe = value; }
         }
 
-
-        private ObservableCollection<Recipe> recipesList;
-
-        public ObservableCollection<Recipe> RecipesList
-        {
-            get { return recipesList; }
-            set
-            {
-                recipesList = value;
-                OnPropertyChanged(nameof(RecipesList));
-            }
-        }
 
         private string recipeName;
         public string RecipeName
@@ -50,17 +50,17 @@ namespace SousVideGuide.ViewModel
             }
         }
 
-        private string ingredients;
-        public string Ingredients
+        private string ingredient;
+        public string Ingredient
         {
             get
             {
-                return ingredients;
+                return ingredient;
             }
             set
             {
-                ingredients = value;
-                OnPropertyChanged(nameof(Ingredients));
+                ingredient = value;
+                OnPropertyChanged(nameof(Ingredient));
             }
         }
 
@@ -109,7 +109,7 @@ namespace SousVideGuide.ViewModel
 
         public FileResult PickedFile { get; internal set; }
 
-        public async void CreateRecipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
+        public async void CreateRecipe(string recipeImage, string recipeName, string recipeTime, uint recipeTemp)
         {
             byte[] imageByteArray;
             int imageSize;
@@ -121,6 +121,14 @@ namespace SousVideGuide.ViewModel
                 stream.Read(imageByteArray, 0, imageSize); // read image int byte array
             }
 
+            List<Ingredient> ingredients = new List<Ingredient>();
+
+            foreach (var item in TempIngredientStorage)
+            {
+                Ingredient ingredient = new Ingredient(item);
+                ingredients.Add(ingredient);
+            }
+
             Recipe recipeCreated = new Recipe(ingredients, recipeImage, recipeName, recipeTime, recipeTemp, imageByteArray, PickedFile.FileName.Split('.').Last()); // Grabs the last part of the sequence. (filetype).
             LastRecipe = recipeCreated;
             recipeRepo.CreateRecipe(recipeCreated);
@@ -129,11 +137,22 @@ namespace SousVideGuide.ViewModel
 
         public void CreateRecipe()
         {
-            CreateRecipe(Ingredients, RecipeImage, RecipeName, RecipeTime, RecipeTemp);
+            CreateRecipe(RecipeImage, RecipeName, RecipeTime, RecipeTemp);
+        }
+
+        public void AddIngredientTemp(string ingredientAdded)
+        {
+            tempIngredientStorage.Add(ingredientAdded);
+        }
+
+        public void AddIngredientTemp()
+        {
+            AddIngredientTemp(Ingredient);
         }
 
         public AddRecipeViewModel()
         {
+            tempIngredientStorage = new ObservableCollection<string>();
             recipeRepo = new RecipeRepository();
         }
     }

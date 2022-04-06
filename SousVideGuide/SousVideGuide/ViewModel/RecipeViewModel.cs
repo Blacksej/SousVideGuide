@@ -23,16 +23,17 @@ namespace SousVideGuide.ViewModel
             }
         }
 
-        public string Ingredients
+        public ObservableCollection<IngredientViewModel> Ingredients
         {
             get
             {
-                return GetRecipe.Ingredients.Replace(", ", "\n");
-            }
-            set
-            {
-                GetRecipe.Ingredients = value;
-                OnPropertyChanged(nameof(Ingredients));
+                ObservableCollection<IngredientViewModel> ingredientViewModels = new ObservableCollection<IngredientViewModel>();
+                foreach (var item in GetRecipe.Ingredients)
+                {
+                    IngredientViewModel ingredientViewModel = new IngredientViewModel(item);
+                    ingredientViewModels.Add(ingredientViewModel);
+                }
+                return ingredientViewModels;
             }
         }
 

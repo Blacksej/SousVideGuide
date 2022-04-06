@@ -8,7 +8,7 @@ namespace SousVideGuide.Model
     public class Recipe
     {
         public string RecipeName { get; set; }
-        public string Ingredients { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
         public string RecipeImage { get; set; }
         public string RecipeTime { get; set; }
         public uint RecipeTemp { get; set; }
@@ -18,7 +18,7 @@ namespace SousVideGuide.Model
         public MemoryStream Stream { get => new MemoryStream(Image); }
 
 
-        public Recipe(string ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp, byte[] image, string fileType)
+        public Recipe(List<Ingredient> ingredients, string recipeImage, string recipeName, string recipeTime, uint recipeTemp, byte[] image, string fileType)
         {
             RecipeName = recipeName;
             Ingredients = ingredients;

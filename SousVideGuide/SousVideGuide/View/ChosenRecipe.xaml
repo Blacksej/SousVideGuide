@@ -4,10 +4,12 @@
              x:Class="SousVideGuide.View.ChosenRecipe"
              xmlns:viewModels="clr-namespace:SousVideGuide.ViewModel" 
              xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
-             xmlns:xyt="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:xyt="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:Helpers="clr-namespace:MyNameSpace.Helpers">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <viewModels:IngredientViewModelToStringConverter x:Key="ingredientToString"/>
 
             <ControlTemplate x:Key="CustomTab">
                 <Grid>
@@ -116,7 +118,7 @@
                                                     </StackLayout>
 
                                                     <StackLayout Grid.Row="1" Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
-                                                        <StackLayout Orientation="Horizontal">
+                                                        <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
                                                             <Label Text="{Binding ChosenRecipe.RecipeTime}" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
                                                             <Label Text="hours" VerticalOptions="EndAndExpand" FontAttributes="None" TextColor="Black"/>
                                                             <!-- Has to be changed to a duration property -->
@@ -153,7 +155,7 @@
                                                     </StackLayout>
 
                                                     <StackLayout Grid.Row="1" Grid.Column="1" HeightRequest="100" VerticalOptions="Start">
-                                                        <StackLayout Orientation="Horizontal">
+                                                        <StackLayout Orientation="Horizontal" Margin="0,10,0,0">
                                                             <Label Text="{Binding ChosenRecipe.RecipeTemp}" VerticalOptions="EndAndExpand" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
                                                             <Label Text="&#186;C" VerticalOptions="EndAndExpand" FontAttributes="None" TextColor="Black"/>
                                                             <!-- Has to be changed to a TEMP property -->
@@ -168,13 +170,41 @@
 
                                         </Grid>
                                         <StackLayout>
-                                            <Label Text="INGREDIENTS" FontSize="18" FontAttributes="Bold" TextColor="Black" Margin="6,30,0,0"/>
+                                            <Label Text="INGREDIENTS" FontSize="18" FontAttributes="Bold" TextColor="Black" Margin="6,40,0,0"/>
                                             <ScrollView Margin="0,0,0,0">
-                                                <Frame Padding="15,0,0,10" CornerRadius="2" BorderColor="Black">
-                                                    <StackLayout>
-                                                        <Label Text="{Binding ChosenRecipe.Ingredients}" Padding="0,10,0,0" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
-                                                    </StackLayout>
-                                                </Frame>
+                                                <StackLayout>
+                                                    <CollectionView ItemsSource="{Binding ChosenRecipe.Ingredients}" HeightRequest="400">
+                                                        <CollectionView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid>
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition Height="Auto"/>
+                                                                        <RowDefinition Height=".2"/>
+                                                                    </Grid.RowDefinitions>
+                                                                    <Frame Padding="5" BorderColor="#1979ff" Margin="0" HasShadow="False">
+                                                                        <StackLayout Orientation="Horizontal">
+                                                                            <CheckBox x:Name="ingredientChecked" Color="#1979ff" VerticalOptions="Center"/>
+                                                                            <Label x:Name="ingredientLabel" Text="{Binding NameOfIngredient}" FontSize="18" VerticalOptions="Center" TextColor="Black">
+                                                                                <Label.Triggers>
+                                                                                    <DataTrigger TargetType="Label"
+                                                                                                 Binding="{Binding Source={x:Reference ingredientChecked}, Path=IsChecked}"
+                                                                                                 Value="True">
+
+                                                                                        <Setter Property="TextColor"
+                                                                                                Value="Green"/>
+
+                                                                                        <Setter Property="FontAttributes"
+                                                                                                Value="Bold"/>
+                                                                                    </DataTrigger>
+                                                                                </Label.Triggers>
+                                                                            </Label>
+                                                                        </StackLayout>
+                                                                    </Frame>
+                                                                </Grid>
+                                                            </DataTemplate>
+                                                        </CollectionView.ItemTemplate>
+                                                    </CollectionView>
+                                                </StackLayout>
                                             </ScrollView>
                                         </StackLayout>
                                     </StackLayout>

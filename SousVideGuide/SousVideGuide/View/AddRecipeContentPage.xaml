@@ -9,12 +9,32 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Frame Padding="10" CornerRadius="10" BackgroundColor="White" Margin="15">
+        <ScrollView>
+            <Frame Padding="10" CornerRadius="10" BackgroundColor="White" Margin="15">
             <StackLayout>
                 <Label Text="CREATE YOUR RECIPE" FontSize="20" FontAttributes="Bold" TextColor="Black" BackgroundColor="White"/>
                 <Entry x:Name="recipeNameEntry" Placeholder="Recipe Name" TextColor="Black" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Text="{Binding RecipeName}" PlaceholderColor="Black" BackgroundColor="White"/>
-                <Entry x:Name="ingredientsEntry" Placeholder="Ingredients" TextColor="Black" Keyboard="Chat" Margin="0,20,0,0" Text="{Binding Ingredients}" PlaceholderColor="Black" BackgroundColor="White"/>
-                <Label Text="Select Picture" Margin="0,30,0,0" FontAttributes="Bold" FontSize="15" TextColor="Black" BackgroundColor="White"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry x:Name="ingredientsEntry" Completed="OnEnterPressed" Placeholder="Enter Amount And Ingredient" WidthRequest="265" TextColor="Black" Keyboard="Chat" Margin="0,20,0,0" Text="{Binding Ingredient}" PlaceholderColor="Black" BackgroundColor="White"/>
+                        <Button Text="Add" BackgroundColor="#1895ff" VerticalOptions="CenterAndExpand" Clicked="AddIngredientClicked"/>
+                    </StackLayout>
+                    <Label Text="Ingredients Added:" FontSize="15" TextColor="Black"/>
+                    <CollectionView ItemsSource="{Binding TempIngredientStorage}" ItemsUpdatingScrollMode="KeepLastItemInView" VerticalScrollBarVisibility="Always" HeightRequest="120">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height=".1"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame Padding="0" BorderColor="Black">
+                                    <Label Text="{Binding .}" Padding="5,4,4,4" TextColor="Black"/>
+                                </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Label Text="Select Picture" Margin="0,30,0,0" FontAttributes="Bold" FontSize="15" TextColor="Black" BackgroundColor="White"/>
                 <Button x:Name="AddImageButton" Text="Select" Clicked="AddImageButtonClicked" BackgroundColor="#1895ff"/>
                 <Entry x:Name="SelectedImage" TextColor="Black" Placeholder="Selected Image" ClearButtonVisibility="WhileEditing" Keyboard="Chat" Margin="0,0,0,0" IsReadOnly="True" Text="{Binding RecipeImage}" PlaceholderColor="Black" BackgroundColor="White"/>
                 <Entry x:Name="recipeTimeEntry" Placeholder="Recipe Time (hours)" TextColor="Black" ClearButtonVisibility="WhileEditing" Margin="0,20,0,0" Keyboard="Numeric" Text="{Binding RecipeTime}" PlaceholderColor="Black" BackgroundColor="White"/>
@@ -22,5 +42,6 @@
                 <Button Text="Create Recipe" VerticalOptions="FillAndExpand" BackgroundColor="#1895ff" Clicked="CreateRecipeClicked"/>
             </StackLayout>
         </Frame>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
